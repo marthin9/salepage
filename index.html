@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxyx Bet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/validate.js"></script>
+    <script>
+        // This script checks if the 'url' parameter exists in the URL query string.
+        // If it does, it validates the domain of the URL against a list of allowed domains.
+        // If the domain is valid, it redirects the user to the specified URL.
+        var searchParams = new URLSearchParams(window.location.search);
+        var isValid = false;
+        var url = searchParams.get('url');
+        if (url) {
+            isValid = validate_domain.some((domain) => {
+                var m = url.match(/^http.?:\/\/[^/]+/);
+                var tgt_domain = m ? m[0] : null;
+                if (tgt_domain) {
+                    return tgt_domain.includes(domain);
+                }
+                return false;
+            });
+        }
+        if (isValid) {
+            window.location.replace(url);
+            window.location.href = url;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="preloader" class="preloader">
+        <div class="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div id="navbar" class="flex justify-between items-center px-[30px] py-2">
+        <a onclick="trackSubscribe()" href="https://line.me/R/ti/p/@522drgdo">
+            <img src="img/p1.jpeg" class="h-[35px] rounded-full" alt="">
+        </a>
+        <a onclick="trackSubscribe()" href="https://line.me/R/ti/p/@522drgdo" class="bg-white p-2 text-black rounded-full drop-shadow-md">สมัครเลย</a>
+    </div>
+    <canvas id="stars" width="300" height="300"></canvas>
+
+    <section class="flex justify-center absolute z-30 top-0 right-0 left-0">
+        <div class="container max-w-screen-sm py-[50px] px-[20px] image-container">
+            <div class="flex-col flex justify-center items-center space-y-5">
+                <!-- Logo -->
+                <img src="img/p1.jpeg" class="my-5 rounded-full h-[100px]" alt="">
+                <!-- Logo -->
+
+                <!-- ข้อความจ่อหัว -->
+                <p class="py-5 text-[18px] text-white">Galaxyx สมัครฟรี ฝากถอนไว เพียง 1 วินาที ไม่มีขั้นต่ำ</p>
+                <!-- สิ้นสุดข้อความจ่อหัว -->
+
+                <!-- ปุ่มสมัครสมาชิก -->
+                <a onclick="trackSubscribe()" href="https://line.me/R/ti/p/@522drgdo" class="bg-white p-6 drop-shadow-md w-full rounded-full animate-bounce">
+                    <div class="flex justify-center">
+                        สมัครเลย
+                    </div>
+                </a>
+                <!-- สิ้นสุดปุ่มสมัครสมาชิก -->
+
+                <!-- รูปภาพโฆษณา -->
+                <img src="img/p2.jpeg" alt="" class="">
+                <img src="img/p3.jpeg" alt="" class="">
+                <img src="img/p4.jpeg" alt="" class="">
+                <img src="img/p5.jpeg" alt="" class="">
+                <img src="img/p6.jpeg" alt="" class="">
+                <!-- สิ้นสุดรูปภาพโฆษณา -->
+            </div>
+
+            <div id="link-container"></div>
+        </div>
+    </section>
+
+    <script>
+        // This script adds a scroll event listener to the window object.
+        // It checks if the user has scrolled up or down and updates the 'top'
+        // property of the '#navbar' element accordingly.
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "-100px";
+            } else {
+                document.getElementById("navbar").style.top = "0";
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
+    <script src="script.js"></script>
+    <script src="script3.js"></script>
+
+    <script>
+        // These functions are click event handlers for different tracking events.
+        function trackContact() {
+            fbq('track', 'Contact');
+        }
+
+        function trackCompleteRegistration() {
+            fbq('track', 'CompleteRegistration');
+        }
+
+        function trackSubscribe() {
+            fbq('track', 'Subscribe');
+        }
+
+        function trackPurchase() {
+            fbq('track', 'Purchase', {
+                value: 0.00,
+                currency: 'THB'
+            });
+        }
+
+        function trackLead() {
+            fbq('track', 'Lead');
+        };
+    </script>
+
+    <script>
+        // This script sets a timeout to track the 'ViewContent' event after 8 seconds.
+        setTimeout(function () {
+            fbq('track', 'ViewContent');
+        }, 8000);
+    </script>
+
+    <script>
+        // Check if the user agent is a bot
+        function isBot() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const bots = ['googlebot', 'bingbot', 'yandexbot', 'baiduspider', 'facebookexternalhit', 'twitterbot'];
+            for (let i = 0; i < bots.length; i++) {
+                if (userAgent.includes(bots[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Check if the user is a bot
+        if (isBot()) {
+            // Redirect to another page
+            window.location.href = 'https://bit.ly/3Wmitdj';
+    } else {
+        // Remove the preloader and load the original content
+        document.getElementById('preloader').style.display = 'none';
+        // Load the original content
+        // ...
+    }
+</script>
+
+
+</body>
+
+</html>

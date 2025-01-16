@@ -1,0 +1,1 @@
+const validate_domain = ['http://bit.ly/3PJlAYJ', 'http://54.168.199.255/']
